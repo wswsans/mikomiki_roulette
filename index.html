@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>干支ルーレット〜</title>
+    </head>
+    <body>
+    <span id="result">已</span>
+    <button>スタート</button>
+    <style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #result {
+        font-size: clamp(3rem, 20vmin, 15rem);
+        line-height: 1;
+        text-align: center;
+    }
+
+    button {
+        margin-top: 2rem;
+        font-size: 2rem;
+        padding: 1rem 3rem;
+    }
+    </style>
+    <script>
+    const roulette = ["已", "己", "巳", "己"];
+
+    const html_text = document.getElementById("result");
+    const html_button = document.getElementsByTagName("button")[0];
+
+    var roulette_stopper = false;
+
+    html_button.onclick = (e) => {
+        let tag = e.target;
+        if (roulette_stopper) {
+            tag.innerText = "スタート";
+        } else {
+            tag.innerText = "ストップ";
+        }
+        roulette_stopper = !roulette_stopper;
+    }
+
+    setInterval(() => {
+        if (roulette_stopper) {
+            let num = Math.floor(Math.random() * 3)
+            html_text.innerText = roulette[num];
+        }
+    }, 50)
+    </script>
+    </body>
+</html>
